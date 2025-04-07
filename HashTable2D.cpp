@@ -12,6 +12,7 @@ int HashTable2D::Insert(int inVal) {
     int row = Hash(inVal);
     int col = 0;
     int start = col;
+    
     while(data[row][col] != INT_MIN && col < ARRAYSIZE) { //INT_MIN in place of NULL
         col++;
     }

@@ -1,6 +1,7 @@
 #ifndef __HashTable2D__
 #define __HashTable2D__
 
+#include <iostream>
 #include <climits>
 #include "Exceptions.h"
 

@@ -1,10 +1,10 @@
 #include "HashTable1D.h"
 
 HashTable1D::~HashTable1D() {
-    
+
 }
 
-int HashTable1D::Insert(int inVal) {   //Need to update to return the number of locations it moved before placing its value
+int HashTable1D::Insert(int inVal) {
     if (isFull()) {
         Exception(-1, "Hash Table is full");
     }
@@ -32,7 +32,7 @@ int HashTable1D::Remove(int target) {
     return (index - start) + 1;
 }
 
-int HashTable1D::Find(int target) { //Need to return the number of spots it moved before finding value or not
+int HashTable1D::Find(int target) {
     int index = Hash(target);
     int start = index;
 
@@ -50,7 +50,27 @@ int HashTable1D::Hash(int inVal) {
 }
 
 void HashTable1D::Print() {
-
+    std::cout << "Index\t\tValue" << std::endl;
+    for (int i{}; i < MAXSIZE; i++) {
+        if (data[i] != INT_MIN) {
+            std::cout << "  " << i << "\t\t" << data[i] << std::endl;
+        }
+        if (i > 0 && i < MAXSIZE) {
+            if (data[i] == INT_MIN && data[i-1] != INT_MIN) {
+                std::cout << i << " - ";
+            }
+            if (data[i] == INT_MIN && data[i+1] != INT_MIN) {
+                std::cout << i << "\t\tEmpty" << std::endl;
+            }
+        } else {
+            if (data[i] == INT_MIN && i == 0) {
+                std::cout << i << " - ";
+            }
+            if (data[i] == INT_MIN && i == MAXSIZE) {
+                std::cout << i << "\t\tEmpty" << std::endl;
+            }
+        }
+    }
 }
 
 bool HashTable1D::isFull() {
