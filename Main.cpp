@@ -10,6 +10,7 @@
 
 BinaryTree<int> TestNums;
 HashTable2D TwoDHash;
+//HashTable1D OneDHash; //placeholder
 
 
 int main() {
@@ -36,12 +37,25 @@ int main() {
 		numCount++;
 	}
 	//randnum unit test:
-	TestNums.displayTree(TestNums.getRoot());
+	int arrCounter = 0;
+	int TestNumsArr[100];
+	int *AscendPointer = TestNums.GetAllAscending(TestNums.getRoot(), arrCounter, TestNumsArr);
+	
+	for (int i = 0; i < TestNums.getSize(); i++) {
+		TestNumsArr[i] = AscendPointer[i];
+		std::cout << TestNumsArr[i] << std::endl;
+	}
 	std::cout << "Numbers generated: "<<numCount << std::endl;
 		
 	//insert the first 50 value in both structures. 
 	//	KEEP TRACK of how many slots you have to check--then record this value (how?)
-	
+	//for (int i = 0; i < 50; i++) {
+		//TwoDHash.Insert(TestNumsArr[i]);
+		//OneDHash.Insert(TestNumsArr[i]);
+		/*
+		* This is all kinda a placeholder for now. I am not quite sure if having i as a parameter for find will work
+		*/
+	//}
 	//REmove all items from the data structure where the index of the value in the main function % 7 = 0.
 	//	KEEP TRACK of how many slots you have to check--then record this value (how?)
 	
