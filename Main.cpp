@@ -5,7 +5,7 @@
 #include"Node.h"
 #include"Exceptions.h"
 #include"BinaryTree.h"
-#include"2DHashTable.h"
+#include"HashTable2D.h"
 #include"HashTable1D.h"
 
 BinaryTree<int> TestNums;
