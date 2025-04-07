@@ -10,7 +10,7 @@
 
 BinaryTree<int> TestNums;
 HashTable2D TwoDHash;
-//HashTable1D OneDHash; //placeholder
+HashTable1D OneDHash; //placeholder
 
 
 int main() {
@@ -70,7 +70,7 @@ int main() {
 	std::cout << "Number of slots checked to delete: " << placeholder << std::endl;
 
 	//Insert the remaining 50 values from both data structures. record the running number of spots checked to remove
-	for (int = 50; i < 100; i++) {
+	for (int i = 50; i < 100; i++) {
 		TwoDHash.Insert(TestNumsArr[i]);
 		OneDHash.Insert(TestNumsArr[i]);
 		std::cout << "Added " << TestNumsArr[i] << " to the data structure." << std::endl;

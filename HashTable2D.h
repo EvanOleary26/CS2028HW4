@@ -5,17 +5,17 @@
 #include <climits>
 #include "Exceptions.h"
 
-const int MAXSIZE = 100;
+const int MAXSIZE2 = 100;
 const int ARRAYSIZE = 5;
 
 class HashTable2D {
     private:
-        int data[MAXSIZE][ARRAYSIZE];
-        bool deletedF[MAXSIZE][ARRAYSIZE];
+        int data[MAXSIZE2][ARRAYSIZE];
+        bool deletedF[MAXSIZE2][ARRAYSIZE];
     public:
 
         HashTable2D() {
-            for (int i{}; i < MAXSIZE; i++) {
+            for (int i{}; i < MAXSIZE2; i++) {
                 for (int j{}; j < ARRAYSIZE; j++) {
                     data[i][j] = INT_MIN;
                 }

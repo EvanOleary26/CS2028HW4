@@ -53,7 +53,7 @@ int HashTable2D::Find(int target) {
 }
 
 int HashTable2D::Hash(int inVal) {
-    return inVal % MAXSIZE;
+    return inVal % MAXSIZE2;
 }
 
 void HashTable2D::Print() {
@@ -61,7 +61,7 @@ void HashTable2D::Print() {
 }
 
 bool HashTable2D::isFull() {
-    for (int i{}; i < MAXSIZE; i++) {
+    for (int i{}; i < MAXSIZE2; i++) {
         for (int j{}; j < ARRAYSIZE; j++) {
             if (data[i][j] == INT_MIN) {
                 return false;
@@ -72,7 +72,7 @@ bool HashTable2D::isFull() {
 }
 
 bool HashTable2D::isEmpty() {
-    for (int i{}; i < MAXSIZE; i++) {
+    for (int i{}; i < MAXSIZE2; i++) {
         for (int j{}; j < ARRAYSIZE; j++) {
             if (data[i][j] != INT_MIN) {
                 return false;
