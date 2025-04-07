@@ -1,25 +1,28 @@
-#ifndef __HashTable1D__
-#define __HashTable1D__
+#ifndef __HashTable2D__
+#define __HashTable2D__
 
 #include <iostream>
 #include <climits>
 #include "Exceptions.h"
 
-const int MAXSIZE = 500;
+const int MAXSIZE = 100;
+const int ARRAYSIZE = 5;
 
-class HashTable1D {
+class HashTable2D {
     private:
-        int data[MAXSIZE];
-        bool deletedF[MAXSIZE];
+        int data[MAXSIZE][ARRAYSIZE];
+        bool deletedF[MAXSIZE][ARRAYSIZE];
     public:
 
-        HashTable1D() {
+        HashTable2D() {
             for (int i{}; i < MAXSIZE; i++) {
-                data[i] = INT_MIN;
+                for (int j{}; j < ARRAYSIZE; j++) {
+                    data[i][j] = INT_MIN;
+                }
             }
         };
 
-        ~HashTable1D();
+        ~HashTable2D();
 
         int Insert(int inVal);
         int Remove(int inVal);
