@@ -140,7 +140,8 @@ void BinaryTree<T>::Insert(T inVal, Node<T> *parent) {  //Need to add Tree Balan
 template<class T>
 T BinaryTree<T>::Find(T target, Node<T> *parent) {
     if (parent == nullptr) {
-        throw Exception(-1, "Cannot find item");
+        return -1;
+        //throw Exception(-1, "Cannot find item");
     }
     if (target == parent->data) {
         return parent->data;
@@ -158,9 +159,6 @@ int BinaryTree<T>::getHeight(Node<T> *child){
     if (child == nullptr) {
         return 0;
         }
-    if (child->data.count < 0) { //if it somehow bypasses the nullptr for a not-real word
-        return 0;
-    }
 
     int leftHeight = getHeight(child->left);
     int rightHeight = getHeight(child->right);
@@ -176,8 +174,8 @@ T* BinaryTree<T>::GetAllAscending(Node<T> *parent, int &arrSpotCounter, T* ascen
     if (parent->left != nullptr) {
         GetAllAscending(parent->left, arrSpotCounter, ascendArr);
     }
-    parent->data.setHeight(getHeight(parent));
-    parent->data.setBF(getBF(parent));
+    //parent->data.setHeight(getHeight(parent));
+    //parent->data.setBF(getBF(parent));
     ascendArr[arrSpotCounter] = parent->data;
 	arrSpotCounter++;
     if (parent->right != nullptr) {
@@ -191,8 +189,8 @@ T* BinaryTree<T>::GetAllDescending(Node<T>* parent, int& arrSpotCounter, T* asce
     if (parent->right != nullptr) {
         GetAllDescending(parent->right, arrSpotCounter, ascendArr);
     }
-    parent->data.setHeight(getHeight(parent));
-    parent->data.setBF(getBF(parent));
+    //parent->data.setHeight(getHeight(parent));
+    //parent->data.setBF(getBF(parent));
     ascendArr[arrSpotCounter] = parent->data;
     arrSpotCounter++;
     if (parent->left != nullptr) {
@@ -401,4 +399,4 @@ int BinaryTree<T>::getBF(Node<T>* parent) {
 }
 
 //Base Template
-template class BinaryTree<Word>;
+template class BinaryTree<int>;
