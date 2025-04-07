@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 #include <iostream>
 #include <string>
 #include <random>
@@ -99,4 +99,4 @@ int main() {
 
 	return 0;
 }
->>>>>>> 349b956126150a3d51fd57eddcd84f568d3997f9
+
