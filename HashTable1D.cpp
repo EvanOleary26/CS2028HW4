@@ -50,24 +50,24 @@ int HashTable1D::Hash(int inVal) {
 }
 
 void HashTable1D::Print() {
-    std::cout << "Index\t\tValue" << std::endl;
+    std::cout << "\tIndex\t\tValue" << std::endl;
     for (int i{}; i < MAXSIZE1; i++) {
         if (data[i] != INT_MIN) {
-            std::cout << "  " << i << "\t\t" << data[i] << std::endl;
+            std::cout << "\t  " << i << "\t\t" << data[i] << std::endl;
         }
         if (i > 0 && i < MAXSIZE1) {
             if (data[i] == INT_MIN && data[i-1] != INT_MIN) {
-                std::cout << i << " - ";
+                std::cout << "\t" << i << "-";
             }
             if (data[i] == INT_MIN && data[i+1] != INT_MIN) {
-                std::cout << i << "\t\tEmpty" << std::endl;
+                std::cout << i << "\t\tEmpty Values" << std::endl;
             }
         } else {
             if (data[i] == INT_MIN && i == 0) {
-                std::cout << i << " - ";
+                std::cout << "  \t" << i << "-";
             }
             if (data[i] == INT_MIN && i == MAXSIZE1) {
-                std::cout << i << "\t\tEmpty" << std::endl;
+                std::cout << i << "\t\tEmpty Values" << std::endl;
             }
         }
     }

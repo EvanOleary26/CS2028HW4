@@ -47,7 +47,7 @@ int main() {
 		std::cout << TestNumsArr[i] << std::endl;
 	}
 	std::cout << "Numbers generated: "<< numCount << std::endl;
-		
+
 	//insert the first 50 value in both structures. 
 	//	KEEP TRACK of how many slots you have to check--then record this value (how?)
 	for (int i = 0; i < 50; i++) {
@@ -58,6 +58,8 @@ int main() {
 	}
 	std::cout << "Number of slots checked to insert: " << placeholder << std::endl;
 	
+    OneDHash.Print();
+    TwoDHash.Print();
 	//Remove all items from the data structure where the index of the value in the main function % 7 = 0.
 	//	KEEP TRACK of how many slots you have to check--then record this value (how?)
 	for (int i = 0; i < 50; i++) {
@@ -77,5 +79,6 @@ int main() {
 	}
 	std::cout << "Number of slots checked to insert: " << placeholder << std::endl;
 
+    
 	return 0;
 }

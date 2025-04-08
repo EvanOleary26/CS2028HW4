@@ -57,6 +57,26 @@ int HashTable2D::Hash(int inVal) {
 }
 
 void HashTable2D::Print() {
+    std::cout << "\tIndex\tValues" << std::endl;
+    for (int i{}; i < MAXSIZE2; i++) {
+        std::cout << "\t  " << i << "\t";
+        if ((data[i][0] == INT_MIN) && 
+            (data[i][1] == INT_MIN) && 
+            (data[i][2] == INT_MIN) && 
+            (data[i][3] == INT_MIN) && 
+            (data[i][4] == INT_MIN)) {
+                std::cout << "Empty Values" << std::endl;
+        } else {
+            for (int j{}; j < ARRAYSIZE; j++) {
+                if (data[i][j] != INT_MIN) {
+                    std::cout << j << " " << data[i][j] << "  ";
+                } else {
+                    std::cout << j << " Empty  ";
+                }
+            }
+            std::cout << std::endl;
+        }
+    }
 
 }
 
