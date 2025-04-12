@@ -16,6 +16,7 @@ class HashTable1D {
         HashTable1D() {
             for (int i{}; i < MAXSIZE1; i++) {
                 data[i] = INT_MIN;
+                deletedF[i] = false;
             }
         };
 

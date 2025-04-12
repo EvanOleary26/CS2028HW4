@@ -12,6 +12,10 @@ public:
     Exception(int errNum) : errorNumber(errNum) {};
     Exception(std::string errMess) : errorMessage(errMess) {};
     Exception(int errNum, std::string errMess) : errorNumber(errNum), errorMessage(errMess) {};
+
+    void displayError() {
+        std::cout << errorNumber << ": " << errorMessage << std::endl;
+    }
 };
 
 

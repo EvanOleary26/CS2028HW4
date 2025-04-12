@@ -18,6 +18,7 @@ class HashTable2D {
             for (int i{}; i < MAXSIZE2; i++) {
                 for (int j{}; j < ARRAYSIZE; j++) {
                     data[i][j] = INT_MIN;
+                    deletedF[i][j] = false;
                 }
             }
         };

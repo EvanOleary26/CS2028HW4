@@ -29,12 +29,12 @@ int HashTable2D::Remove(int target) {
     int col = 0;
     int start = col;
 
-    while(data[col][row] != target) {
+    while(data[row][col] != target) {
         col++;
     }
 
-    deletedF[col][row] = true;
-    data[col][row] = INT_MIN;  //INT_MIN in place of NULL
+    deletedF[row][col] = true;
+    data[row][col] = INT_MIN;  //INT_MIN in place of NULL
     return (col - start) + 1;
 }
 
@@ -43,10 +43,13 @@ int HashTable2D::Find(int target) {
     int col = 0;
     int start = col;
 
-    while(data[row][col] != target && (data[row][col] == INT_MIN && deletedF[row][col] == false) && col < ARRAYSIZE) { //INT_MIN in place of NULL
+    while(col < ARRAYSIZE && data[row][col] != target) { //INT_MIN in place of NULL
+        if (data[row][col] == INT_MIN && !deletedF[row][col]) {
+            Exception(-1, "Unable to find value in Hash Table");
+        }
         col++;
     }
-    if (data[col][row] == INT_MIN) {   //INT_MIN in place of NULL
+    if (col >= ARRAYSIZE) {   //INT_MIN in place of NULL
         Exception(-1, "Unable to find value in Hash Table");
     }
     return (col - start) + 1;
@@ -57,6 +60,7 @@ int HashTable2D::Hash(int inVal) {
 }
 
 void HashTable2D::Print() {
+    std::cout << "\nTwo Dimensional Hash" << std::endl;
     std::cout << "\tIndex\tValues" << std::endl;
     for (int i{}; i < MAXSIZE2; i++) {
         std::cout << "\t  " << i << "\t";
@@ -69,9 +73,9 @@ void HashTable2D::Print() {
         } else {
             for (int j{}; j < ARRAYSIZE; j++) {
                 if (data[i][j] != INT_MIN) {
-                    std::cout << j << " " << data[i][j] << "  ";
+                    std::cout << j << ": " << data[i][j] << "  ";
                 } else {
-                    std::cout << j << " Empty  ";
+                    std::cout << j << ": Empty  ";
                 }
             }
             std::cout << std::endl;

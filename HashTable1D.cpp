@@ -12,9 +12,14 @@ int HashTable1D::Insert(int inVal) {
     //If location you want add at is taken add move up a space
     int index = Hash(inVal);
     int start = index;
-    while(data[index] != INT_MIN) { //INT_MIN in place of NULL
+    int count = 0;  // To prevent infinite loops
+    
+    // Look for an empty slot or a deleted slot
+    while (count < MAXSIZE1 && data[index] != INT_MIN) {
         index = (index + 1) % MAXSIZE1;
+        count++;
     }
+
     data[index] = inVal;
     return (index - start) + 1;
 }
@@ -36,7 +41,11 @@ int HashTable1D::Find(int target) {
     int index = Hash(target);
     int start = index;
 
-    while(data[index] != target && (data[index] == INT_MIN && deletedF[index] == false) ) { //INT_MIN in place of NULL
+    while (data[index] != target) {
+        // If we find an empty, never-used slot, the item isn't in the table
+        if (data[index] == INT_MIN && !deletedF[index]) {
+            Exception(-1, "Unable to find value in Hash Table");
+        }
         index = (index + 1) % MAXSIZE1;
     }
     if (data[index] == INT_MIN) {   //INT_MIN in place of NULL
@@ -50,24 +59,25 @@ int HashTable1D::Hash(int inVal) {
 }
 
 void HashTable1D::Print() {
-    std::cout << "\tIndex\t\tValue" << std::endl;
+    std::cout << "\nOne Dimensional Hash" << std::endl;
+    std::cout << "\tIndex\tValue" << std::endl;
     for (int i{}; i < MAXSIZE1; i++) {
         if (data[i] != INT_MIN) {
-            std::cout << "\t  " << i << "\t\t" << data[i] << std::endl;
+            std::cout << "\t  " << i << "\t" << data[i] << std::endl;
         }
         if (i > 0 && i < MAXSIZE1) {
             if (data[i] == INT_MIN && data[i-1] != INT_MIN) {
                 std::cout << "\t" << i << "-";
             }
             if (data[i] == INT_MIN && data[i+1] != INT_MIN) {
-                std::cout << i << "\t\tEmpty Values" << std::endl;
+                std::cout << i << "\tEmpty" << std::endl;
             }
         } else {
             if (data[i] == INT_MIN && i == 0) {
                 std::cout << "  \t" << i << "-";
             }
             if (data[i] == INT_MIN && i == MAXSIZE1) {
-                std::cout << i << "\t\tEmpty Values" << std::endl;
+                std::cout << i << "\tEmpty" << std::endl;
             }
         }
     }
@@ -75,7 +85,7 @@ void HashTable1D::Print() {
 
 bool HashTable1D::isFull() {
     for (int i{}; i < MAXSIZE1; i++) {
-        if (data[i] == INT_MIN) {   //Check for a value that isnt filled
+        if (data[i] == INT_MIN && !deletedF[i]) {   //Check for a value that isnt filled
             return false;
         }
     }
