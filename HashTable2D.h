@@ -23,6 +23,15 @@ class HashTable2D {
             }
         };
 
+        HashTable2D(int num) {
+            for (int i{}; i < MAXSIZE2; i++) {
+                for (int j{}; j < ARRAYSIZE; j++) {
+                    data[i][j] = num;
+                    deletedF[i][j] = false;
+                }
+            }
+        };
+
         ~HashTable2D();
 
         int Insert(int inVal);

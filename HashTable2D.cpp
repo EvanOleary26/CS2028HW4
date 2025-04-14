@@ -1,12 +1,17 @@
 #include "HashTable2D.h"
 
 HashTable2D::~HashTable2D() {
-    
+    for (int i{}; i < MAXSIZE2; i++) {
+        for(int j{}; j < ARRAYSIZE; j++) {
+        data[i][j] = INT_MIN;
+        deletedF[i][j] = false;
+        }
+    }
 }
 
 int HashTable2D::Insert(int inVal) {
     if (isFull()) {
-        Exception(-1, "Hash Table is full");
+        throw Exception(-1, "Hash Table is full");
     }
 
     int row = Hash(inVal);
@@ -17,7 +22,7 @@ int HashTable2D::Insert(int inVal) {
         col++;
     }
     if (col == ARRAYSIZE) {
-        Exception(-1, "No space to add value");
+        throw Exception(-1, "No space to add value");
     }
     data[row][col] = inVal;
     return (col - start) + 1;
@@ -29,7 +34,7 @@ int HashTable2D::Remove(int target) {
     int col = 0;
     int start = col;
 
-    while(data[row][col] != target) {
+    while(col < ARRAYSIZE && data[row][col] != target) {
         col++;
     }
 
@@ -43,14 +48,14 @@ int HashTable2D::Find(int target) {
     int col = 0;
     int start = col;
 
-    while(col < ARRAYSIZE && data[row][col] != target) { //INT_MIN in place of NULL
+    while(col < ARRAYSIZE && (data[row][col] != target || deletedF[row][col]) ) { //INT_MIN in place of NULL
         if (data[row][col] == INT_MIN && !deletedF[row][col]) {
-            Exception(-1, "Unable to find value in Hash Table");
+            throw Exception(-1, "Unable to find value in Hash Table");
         }
         col++;
     }
-    if (col >= ARRAYSIZE) {   //INT_MIN in place of NULL
-        Exception(-1, "Unable to find value in Hash Table");
+    if (col >= ARRAYSIZE || (data[row][col] != target || deletedF[row][col]) ) {
+        throw Exception(-1, "Unable to find value in Hash Table");
     }
     return (col - start) + 1;
 }

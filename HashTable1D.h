@@ -20,6 +20,13 @@ class HashTable1D {
             }
         };
 
+        HashTable1D(int num) {
+            for (int i{}; i < MAXSIZE1; i++) {
+                data[i] = num;
+                deletedF[i] = false;
+            }
+        };
+
         ~HashTable1D();
 
         int Insert(int inVal);

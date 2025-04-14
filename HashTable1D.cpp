@@ -1,12 +1,15 @@
 #include "HashTable1D.h"
 
 HashTable1D::~HashTable1D() {
-
+    for (int i{}; i < MAXSIZE1; i++) {
+        data[i] = INT_MIN;
+        deletedF[i] = false;
+    }
 }
 
 int HashTable1D::Insert(int inVal) {
     if (isFull()) {
-        Exception(-1, "Hash Table is full");
+        throw Exception(-1, "Hash Table is full");
     }
 
     //If location you want add at is taken add move up a space
@@ -41,16 +44,20 @@ int HashTable1D::Find(int target) {
     int index = Hash(target);
     int start = index;
 
-    while (data[index] != target) {
+    int count{};
+
+    while (data[index] != target && count < MAXSIZE1) {
         // If we find an empty, never-used slot, the item isn't in the table
         if (data[index] == INT_MIN && !deletedF[index]) {
-            Exception(-1, "Unable to find value in Hash Table");
+            throw Exception(-1, "Unable to find value in Hash Table");
         }
         index = (index + 1) % MAXSIZE1;
+        count++;
     }
-    if (data[index] == INT_MIN) {   //INT_MIN in place of NULL
-        Exception(-1, "Unable to find value in Hash Table");
+    if (data[index] == INT_MIN || count == MAXSIZE1) {
+        throw Exception(-1, "Unable to find value in Hash Table");
     }
+
     return (index - start) + 1;
 }
 
